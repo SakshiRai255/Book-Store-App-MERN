@@ -16,11 +16,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-app.get("/",(_req,res)=>{
-    res.send("Hello World")
-})
-
 // DataBase Connected
 BookStoreDataBase();
 
