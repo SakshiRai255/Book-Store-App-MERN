@@ -24,6 +24,6 @@ app.use('/uploads',express.static("uploads"));
 
 
 // Middleware
-app.use('/books',upload.single('image'),BookRoute)
+app.use('/books',BookRoute)
 
 export default app
