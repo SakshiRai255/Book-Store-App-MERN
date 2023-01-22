@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Book(props) {
 
-  const {BASE_URL} = "https://book-store-app-mern.vercel.app"
+  const BASE_URL = "https://book-store-app-mern.vercel.app"
 
   const navigate = useNavigate();
   const { _id, name, author, description, price, image } = props.book;
@@ -21,7 +21,7 @@ function Book(props) {
   return (
     <div className="card-container">
       <div className="card">
-        <img src={`http://localhost:5000/${image}`} alt={name} />
+        <img src={`${BASE_URL}/${image}`} alt={name} />
         <p>By {author}</p>
         <h4>{name}</h4>
         <p>{description}</p>

@@ -5,7 +5,7 @@ import { Box, Button, Checkbox, FormControlLabel, FormLabel, TextField } from '@
 
 function BookDetail() {
 
-  const {BASE_URL} = "https://book-store-app-mern.vercel.app"
+  const BASE_URL = "https://book-store-app-mern.vercel.app"
 
   const navigate = useNavigate();
   const id = useParams().id

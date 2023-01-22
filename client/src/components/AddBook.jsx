@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function AddBook() {
 
-  const {BASE_URL} = "https://book-store-app-mern.vercel.app"
+  const BASE_URL = "https://book-store-app-mern.vercel.app"
 
   const intialState = {
     name:"",

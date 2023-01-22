@@ -5,7 +5,7 @@ import './Book.css'
 
 function Books() {
   
-  const {BASE_URL} = "https://book-store-app-mern.vercel.app";
+  const BASE_URL = "https://book-store-app-mern.vercel.app";
 
   const [books, setBooks] = useState();
 
