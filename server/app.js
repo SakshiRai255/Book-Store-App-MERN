@@ -3,8 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import BookStoreDataBase from "./configure/BookStoreDataBase.js"
 import BookRoute from './routes/BookRoute.js'
-// import multer from "multer";
-// const upload = multer({dest:'uploads'})
+import multer from "multer";
+const upload = multer({dest:'uploads'})
 import cors from 'cors'
 
 dotenv.config();
@@ -20,10 +20,10 @@ app.use(bodyParser.json());
 BookStoreDataBase();
 
 // to serve images for public
-// app.use('/uploads',express.static("uploads"));
+app.use('/uploads',express.static("uploads"));
 
 
 // Middleware
-app.use('/books',BookRoute)
+app.use('/books',upload.single('image'),BookRoute)
 
 export default app
