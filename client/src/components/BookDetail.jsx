@@ -4,6 +4,9 @@ import axios from 'axios'
 import { Box, Button, Checkbox, FormControlLabel, FormLabel, TextField } from '@mui/material'
 
 function BookDetail() {
+
+  const {BASE_URL} = "https://book-store-app-mern.vercel.app"
+
   const navigate = useNavigate();
   const id = useParams().id
   const[inputs,setInputs] = useState({});
@@ -19,7 +22,7 @@ function BookDetail() {
 
   // get the data of Book by id
   const getData = async()=>{
-   const result = await axios.get(`/books/${id}`)
+   const result = await axios.get(`${BASE_URL}/books/${id}`)
    const data = await result.data
    return data
   }
@@ -42,7 +45,7 @@ function BookDetail() {
         formData.append('price',inputs.price)
         formData.append('available',checked)
         formData.append('image',image)
-  const result = await axios.put(`/books/${id}`,formData)
+  const result = await axios.put(`${BASE_URL}/books/${id}`,formData)
   const data = await result.data
   return data
  }

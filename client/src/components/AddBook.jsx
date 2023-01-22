@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function AddBook() {
+
+  const {BASE_URL} = "https://book-store-app-mern.vercel.app"
+
   const intialState = {
     name:"",
     description:"",
@@ -45,7 +48,8 @@ const submitData = async()=>{
          formData.append('price',inputs.price)
          formData.append('available',checked)
          formData.append('image',image)
-   const result = await axios.post(`/books/add`,formData)
+
+   const result = await axios.post(`${BASE_URL}/books/add`,formData)
    const data = await result.data
    return data
   }

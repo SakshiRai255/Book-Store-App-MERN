@@ -4,10 +4,13 @@ import axios from "axios";
 import './Book.css'
 
 function Books() {
+  
+  const {BASE_URL} = "https://book-store-app-mern.vercel.app";
+
   const [books, setBooks] = useState();
 
   const fetchBooks = async () => {
-    const result = await axios.get("/books/");
+    const result = await axios.get(`${BASE_URL}/books/`);
     const data = await result.data;
     return data;
   };
