@@ -21,7 +21,7 @@ function Book(props) {
   return (
     <div className="card-container">
       <div className="card">
-        <img src={`${BASE_URL}/${image}`} alt={name} />
+        <img src={image} alt={name} />
         <p>By {author}</p>
         <h4>{name}</h4>
         <p>{description}</p>
