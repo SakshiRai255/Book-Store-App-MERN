@@ -73,8 +73,8 @@ const submitData = async()=>{
         <TextField value={inputs.description} onChange={handleChange} margin="normal" fullWidth variant='outlined' name='description'></TextField>
         <FormLabel>Price</FormLabel>
         <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant='outlined' name='price'></TextField>
-        <FormLabel>Image</FormLabel>
-        <TextField type="file" onChange={ImageChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
+        <FormLabel>Image URL</FormLabel>
+        <TextField onChange={ImageChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
         
         <FormControlLabel control={<Checkbox Checked={checked} onChange={()=>setChecked(!checked)}/>} label="Available"/>
         <Button type='submit' variant='contained' sx={{mt:"22px"}}>Add Book</Button>
