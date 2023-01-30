@@ -20,8 +20,10 @@ export const getAllBooks = async (_req, res) => {
 // Add Books
 
 export const addBook = async (req, res) => {
-  const{name,author,description,price,available} = req.body
-  const image = req.file.path;
+  const{name,author,description,price,image,available} = req.body
+
+  // const image = req.file.path;
+
   try {
     const book = new BookModel({
       name,
@@ -29,7 +31,7 @@ export const addBook = async (req, res) => {
       description,
       price,
       available,
-      image:image,
+      image,
     });
 
     if (!book) {
@@ -71,8 +73,10 @@ export const getById = async (req, res) => {
 
 export const updateBook = async (req, res) => {
   const id = req.params.id;
-  const { name, author, description, price, available} = req.body;
-  const image = req.file.path;
+  const { name, author, description, price,image,available} = req.body;
+
+  // const image = req.file.path;
+
   try {
     const book = await BookModel.findByIdAndUpdate(id, {
       name,
@@ -80,7 +84,7 @@ export const updateBook = async (req, res) => {
       description,
       price,
       available,
-      image:image,
+      image,
     });
     if (!book) {
       return res.status(404).json({

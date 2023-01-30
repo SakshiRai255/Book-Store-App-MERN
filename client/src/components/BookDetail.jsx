@@ -6,12 +6,11 @@ import { Box, Button, Checkbox, FormControlLabel, FormLabel, TextField } from '@
 function BookDetail() {
 
   const BASE_URL = "https://book-store-app-mern.vercel.app"
-
+  
   const navigate = useNavigate();
   const id = useParams().id
   const[inputs,setInputs] = useState({});
   const[checked,setChecked] = useState(false);
-  const [image, setImage] = useState(null);
 
   const handleChange = (e)=>{
     setInputs((prevState)=>({
@@ -27,24 +26,17 @@ function BookDetail() {
    return data
   }
 
- // Image Change
-  const ImageChange = (event) =>{
-    if (event.target.files && event.target.files[0]) {
-      let img = event.target.files[0];
-      setImage(img);
-    }
-  }
-
 
 // Update the data of Book by id
  const updateData = async()=>{
-  const formData  = new FormData()
-        formData.append('name',inputs.name)
-        formData.append('description',inputs.description)
-        formData.append('author',inputs.author)
-        formData.append('price',inputs.price)
-        formData.append('available',checked)
-        formData.append('image',image)
+  const formData  ={
+        name:inputs.name,
+        description:inputs.description,
+        author:inputs.author,
+        price:inputs.price,
+        image:inputs.image,
+        available:checked,  
+  }
   const result = await axios.put(`${BASE_URL}/books/${id}`,formData)
   const data = await result.data
   return data
@@ -74,8 +66,8 @@ function BookDetail() {
            <TextField value={inputs.description} onChange={handleChange} margin="normal" fullWidth variant='outlined' name='description'></TextField>
            <FormLabel>Price</FormLabel>
            <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant='outlined' name='price'></TextField>
-           <FormLabel>Image</FormLabel>
-           <TextField type="file" onChange={ImageChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
+           <FormLabel>Image URL</FormLabel>
+           <TextField value={inputs.image} onChange={handleChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
            <FormControlLabel control={<Checkbox Checked={checked} onChange={()=>setChecked(!checked)}/>} label="Available"/>
            <Button type='submit' variant='contained' sx={{mt:"22px"}}>Update Book</Button>
          </Box>

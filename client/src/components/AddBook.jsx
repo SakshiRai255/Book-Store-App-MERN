@@ -19,16 +19,8 @@ function AddBook() {
   const navigate = useNavigate();
   const[inputs,setInputs] = useState({intialState});
   const[checked,setChecked] = useState(false);
-  const [image, setImage] = useState(null);
   
-  // Image Change
-  const ImageChange = (event) =>{
-
-    if (event.target.files && event.target.files[0]) {
-      let img = event.target.files[0];
-      setImage(img);
-    }
-  }
+ 
   // Grabing the input value
   const handleChange = (e)=>{
   setInputs((prevState)=>({
@@ -41,14 +33,14 @@ function AddBook() {
 
 const submitData = async()=>{
 
-   const formData  = new FormData()
-         formData.append('name',inputs.name)
-         formData.append('description',inputs.description)
-         formData.append('author',inputs.author)
-         formData.append('price',inputs.price)
-         formData.append('available',checked)
-         formData.append('image',image)
-
+   const formData  = {
+         name:inputs.name,
+         description:inputs.description,
+         author:inputs.author,
+         price:inputs.price,
+         available:checked,
+         image:inputs.image,
+   }
    const result = await axios.post(`${BASE_URL}/books/add`,formData)
    const data = await result.data
    return data
@@ -74,7 +66,7 @@ const submitData = async()=>{
         <FormLabel>Price</FormLabel>
         <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant='outlined' name='price'></TextField>
         <FormLabel>Image URL</FormLabel>
-        <TextField onChange={ImageChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
+        <TextField value={inputs.image} onChange={handleChange} margin="normal" fullWidth variant='outlined' name='image'></TextField>
         
         <FormControlLabel control={<Checkbox Checked={checked} onChange={()=>setChecked(!checked)}/>} label="Available"/>
         <Button type='submit' variant='contained' sx={{mt:"22px"}}>Add Book</Button>
